@@ -1,5 +1,11 @@
 @extends('layouts.home')
-
+@php
+$d = 'active';
+$ma = '';
+$cp = '';
+$ab = '';
+$or = '';
+@endphp
 @section('content')
 <!-- breadcrumb start -->
 <div class="breadcrumb-main ">

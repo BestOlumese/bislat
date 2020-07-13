@@ -78,7 +78,7 @@
         <ul class="tabs tab-title">
           <li class="current"><a href="tab-1">All Products</a></li>
           @foreach ($limitcats as $cat)
-            <li class=""><a href="{{ $cat->id }}">{{ $cat->name }}</a></li>
+            <li class=""><a href="tabs-{{ $cat->id }}">{{ $cat->name }}</a></li>
           @endforeach
         </ul>
       </div>
@@ -160,7 +160,7 @@
                   @foreach ($products as $pro)
                       
                   
-                  <div id="{{ $pro->subcategory_id }}" class="tab-content">
+                  <div id="tabs-{{ $pro->subcategory_id }}" class="tab-content">
                   <div class="product-slide-6 product-m no-arrow">
                     @foreach ($pro->subcategory->product as $product)
                       @if ($product->is_published == 1)
@@ -181,7 +181,7 @@
                                 </a>
                               </div>
                             </div>
-                            <div class="product-detail detail-inline"> style="height:120px"
+                            <div class="product-detail detail-inline" style="height:120px"> 
                               <div class="detail-title">
                                 <div class="detail-left">
                                   <div class="rating-star">

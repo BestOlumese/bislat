@@ -33,6 +33,10 @@ Route::post('/users/logout', 'Auth\LoginController@userLogout');
 
 Route::prefix('customer')->group(function () {
     Route::get('/dashboard', 'DashboardController@index')->name('customer.dashboard');
+    Route::get('/myaccount', 'DashboardController@myaccount')->name('customer.myaccount');
+    Route::post('/myaccount/update/{id}', 'DashboardController@myaccount_update')->name('customer.myaccount.update');
+    Route::get('/changepassword', 'DashboardController@changepassword')->name('customer.changepassword');
+    Route::post('/changepassword/update/{id}', 'DashboardController@changepassword_update')->name('customer.changepassword.update');
     Route::get('/register', 'CustomerAuthController@showregisterform')->name('customer.register');
     Route::post('/register/store', 'CustomerAuthController@register')->name('customer.register.store');
     Route::post('/logout', 'CustomerAuthController@logout')->name('customer.logout');
