@@ -6,7 +6,7 @@
             <ul>
                 <li class="{{ $d }}"><a href="{{ route('customer.dashboard') }}">Account Info</a></li>
                 <li class="{{ $ab }}"><a href="{{ route('customer.addressbook') }}">Address Book</a></li>
-                <li class="{{ $or }}"><a href="#">My Orders</a></li>
+                <li class="{{ $or }}"><a href="{{ route('customer.orders') }}">My Orders</a></li>
                 <li><a href="{{ route('wishlist') }}">My Wishlist</a></li>
                 <li class="{{ $ma }}"><a href="{{ route('customer.myaccount') }}">My Account</a></li>
                 <li class="{{ $cp }}"><a href="{{ route('customer.changepassword') }}">Change Password</a></li>

@@ -117,45 +117,23 @@
                                         <thead>
                                         <tr>
                                             <th scope="col">Order ID</th>
+                                            <th scope="col">Product Title</th>
                                             <th scope="col">Order Total</th>
                                             <th scope="col">Payment Method</th>
-                                            <th scope="col">Status</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="digits">$120.00</td>
-                                            <td class="font-danger">Bank Transfers</td>
-                                            <td class="digits">On Way</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td class="digits">$90.00</td>
-                                            <td class="font-secondary">Ewallets</td>
-                                            <td class="digits">Delivered</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td class="digits">$240.00</td>
-                                            <td class="font-warning">Cash</td>
-                                            <td class="digits">Delivered</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td class="digits">$120.00</td>
-                                            <td class="font-danger">Direct Deposit</td>
-                                            <td class="digits">$6523</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td class="digits">$50.00</td>
-                                            <td class="font-primary">Bank Transfers</td>
-                                            <td class="digits">Delivered</td>
-                                        </tr>
+                                            @foreach ($orders as $order)
+                                                <tr>
+                                                    <td>#{{ $order->invoice_no }}</td>
+                                                    <td class="digits">{{ $order->product->title }}</td>
+                                                    <td class="digits">&#8358; {{ $order->due_amount }}</td>
+                                                    <td class="font-danger">{{ $order->payment_method }}</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
-                                    <a href="order.html" class="btn btn-primary">View All Orders</a>
+                                    <a href="{{ route('orders') }}" class="btn btn-primary">View All Orders</a>
                                 </div>
                                 <div class="code-box-copy">
                                     <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head1" title="" data-original-title="Copy"><i class="icofont icofont-copy-alt"></i></button>

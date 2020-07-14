@@ -30,7 +30,7 @@
                     <div class="col-lg-6 offset-lg-3">
                         <form method="GET" action="/results" class="form-header">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="query" aria-label="Amount (to the nearest dollar)" placeholder="Search Products......">
+                                <input type="text" class="form-control" name="query" aria-label="Amount (to the nearest dollar)" placeholder="Search Products......" required>
                                 <div class="input-group-append">
                                     <button class="btn btn-normal"><i class="fa fa-search"></i>Search</button>
                                 </div>

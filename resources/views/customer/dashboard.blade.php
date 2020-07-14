@@ -49,17 +49,17 @@ $or = '';
                                 <div class="col-sm-6">
                                     <div class="box">
                                         <div class="box-title">
-                                            <h3>Contact Information</h3><a href="#">Edit</a></div>
+                                            <h3>Contact Information</h3><a href="{{ route('customer.myaccount') }}">Edit</a></div>
                                         <div class="box-content">
                                             <h6>{{  Auth::guard('customer')->user()->name }}</h6>
                                             <h6>{{  Auth::guard('customer')->user()->email }}</h6>
-                                            <h6><a href="#">Change Password</a></h6></div>
+                                            <h6><a href="{{ route('customer.changepassword') }}">Change Password</a></h6></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="box">
                                         <div class="box-title">
-                                            <h3>Address Book</h3><a href="#">Edit</a></div>
+                                            <h3>Address Book</h3><a href="{{ route('customer.addressbook') }}">Edit</a></div>
                                         <div class="box-content">
                                             <p>You can set your default shipping address through this link.</p>
                                         </div>

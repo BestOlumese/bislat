@@ -27,7 +27,7 @@
     <div class="custom-container">
         <div class="checkout-page contact-page">
             <div class="checkout-form">
-                <form  method="POST" action="">
+                <form  method="POST" action="{{ route('order') }}">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-lg-6 col-sm-12 col-xs-12">
@@ -35,9 +35,9 @@
                                 <h3>Billing Details</h3></div>
                             <div class="theme-form">
                                 <div class="row check-out ">
-
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12{{ $errors->has('billing_first_name') ? ' has-error' : '' }}">
                                         <label>First Name</label>
+                                        <input type="hidden" name="customer_address_id" value="{{ $customer->id }}">
                                         <input type="text" name="billing_first_name" value="{{ $customer->billing_first_name }}" placeholder="">
                                         @if ($errors->has('billing_first_name'))
                                             <span class="help-block">

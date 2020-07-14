@@ -6,6 +6,7 @@ use Session;
 use Auth;
 use App\Customer;
 use App\CustomerAddresses;
+use App\Order;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -140,5 +141,14 @@ class DashboardController extends Controller
 
         Session::flash('success', 'Address Book Saved Successfully');
         return redirect()->back();
+    }
+
+    public function orders()
+    {
+        $auth = Auth::guard('customer')->user()->id;
+        $orders = Order::all();
+        
+        return view('customer.orders')
+                ->with('orders', $orders);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Order;
 use App\Product;
 use App\Subcategory;
 use Illuminate\Http\Request;
@@ -27,9 +28,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $orders = Order::latest()->take(5)->get();
+
         return view('admin.home')
             ->with('product_count', Product::count())
             ->with('category_count', Category::count())
-            ->with('subcategory_count', Subcategory::count());
+            ->with('subcategory_count', Subcategory::count())
+            ->with('orders', $orders);
     }
 }

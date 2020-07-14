@@ -24,6 +24,9 @@
     <!-- Flag icon-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/flag-icon.css') }}">
 
+    <!-- Datatables css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.css') }}">
+
     <!-- jsgrid css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jsgrid.css') }}">
 
@@ -114,6 +117,10 @@
     <script src="{{ asset('js/chart/flot-chart/jquery.flot.pie.js') }}"></script>
     <!--dashboard custom js-->
     <script src="{{ asset('js/dashboard/default.js') }}"></script>
+
+    <!-- Datatable js-->
+    <script src="{{ asset('js/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/datatables/custom-basic.js') }}"></script>
 
     <!--right sidebar js-->
     <script src="{{ asset('js/chat-menu.js') }}"></script>

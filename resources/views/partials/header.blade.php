@@ -88,7 +88,7 @@
                     <div class="input-group-prepend">
                       <span class="search"><i class="fa fa-search"></i></span>
                     </div>
-                    <input type="text" class="form-control" name="query" placeholder="Search a Product" >
+                    <input type="text" class="form-control" name="query" placeholder="Search a Product" required>
                     <div class="input-group-prepend">
                       <button type="submit" class="btn btn-normal">SEARCH</button>
                     </div>
@@ -284,7 +284,7 @@
                               <div class="row">
                                 <div class="col-xl-12">
                                   <form method="GET" action="/results">
-                                    <div class="form-group"><input type="text" class="form-control" id="exampleInputPassword1" name="query" placeholder="Search a Product"></div>
+                                    <div class="form-group"><input type="text" class="form-control" id="exampleInputPassword1" name="query" placeholder="Search a Product" required></div>
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                                   </form>
                                 </div>

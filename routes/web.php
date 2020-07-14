@@ -35,6 +35,7 @@ Route::prefix('customer')->group(function () {
     Route::get('/dashboard', 'DashboardController@index')->name('customer.dashboard');
     Route::get('/myaccount', 'DashboardController@myaccount')->name('customer.myaccount');
     Route::post('/myaccount/update/{id}', 'DashboardController@myaccount_update')->name('customer.myaccount.update');
+    Route::get('/orders', 'DashboardController@orders')->name('customer.orders');
     Route::get('/changepassword', 'DashboardController@changepassword')->name('customer.changepassword');
     Route::post('/changepassword/update/{id}', 'DashboardController@changepassword_update')->name('customer.changepassword.update');
     Route::get('/addressbook', 'DashboardController@addressbook')->name('customer.addressbook');
@@ -112,6 +113,11 @@ Route::get('cart/decr/{id}/{qty}', [
 Route::get('/checkout', [
     'uses' => 'CheckoutController@checkout',
     'as' => 'checkout'
+]);
+
+Route::post('/order', [
+    'uses' => 'CheckoutController@order',
+    'as' => 'order'
 ]);
 
 Auth::routes();
@@ -218,6 +224,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/profile/update/{id}', [
         'uses' => 'ProfilesController@update',
         'as' => 'profile.update'
+    ]);
+
+    Route::get('/orders', [
+        'uses' => 'OrdersController@orders',
+        'as' => 'orders'
+    ]);
+
+    Route::get('/order/{id}', [
+        'uses' => 'OrdersController@order_view',
+        'as' => 'order.view'
     ]);
 
 });
