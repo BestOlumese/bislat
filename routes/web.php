@@ -37,6 +37,8 @@ Route::prefix('customer')->group(function () {
     Route::post('/myaccount/update/{id}', 'DashboardController@myaccount_update')->name('customer.myaccount.update');
     Route::get('/changepassword', 'DashboardController@changepassword')->name('customer.changepassword');
     Route::post('/changepassword/update/{id}', 'DashboardController@changepassword_update')->name('customer.changepassword.update');
+    Route::get('/addressbook', 'DashboardController@addressbook')->name('customer.addressbook');
+    Route::post('/addressbook/update/{id}', 'DashboardController@addressbook_update')->name('customer.addressbook.update');
     Route::get('/register', 'CustomerAuthController@showregisterform')->name('customer.register');
     Route::post('/register/store', 'CustomerAuthController@register')->name('customer.register.store');
     Route::post('/logout', 'CustomerAuthController@logout')->name('customer.logout');

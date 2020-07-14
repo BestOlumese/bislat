@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2020 at 09:55 PM
+-- Generation Time: Jul 14, 2020 at 10:13 AM
 -- Server version: 10.3.22-MariaDB
 -- PHP Version: 7.3.0
 
@@ -73,9 +73,45 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `pnumber`) VALUES
-(7, 'John Doe', 'john@doe.com', '$2y$10$pFibntiMwS/eC4uSLz2p/OmHo8zeN88p7UiR0jeozQ3VJ8vnFuLGy', 'ScfOYUTppoUQ8lXGfjr5o2yKSLAXT9nnoPAxuydrflrzXDXiLDSAmoYvY1CH', '2020-07-12 02:13:51', '2020-07-12 02:13:51', ''),
-(8, 'Jane Doe', 'jane@doe.com', '$2y$10$fYBoAcQvFTiJJXE.DX.2WeBkAjxJRd9HRhoni3UQvS863h6zCiXvu', 'qpgDnTfuwZ4CQbR11jUJYv7Ut1BHHWeQY2RIY7c96fLAeDUWEBRsER6Hb77B', '2020-07-12 13:48:36', '2020-07-12 13:48:36', '08039230044'),
-(9, 'Best Amiolemen', 'bestolumese@gmail.com', NULL, '1Tr6gR4Z9l1s6T1OsRyH9JTlDuXaQQmqFEjd7hDeucqK0KdmOwlJrmsaGpDH', '2020-07-13 02:46:03', '2020-07-13 02:46:03', '08012345678');
+(8, 'Jane Doe', 'jane@doe.com', '$2y$10$hdev.wUCexGJrBXxqPi8MOVZ4BivZNVXfrvHcklnBIN8X.iFE3Q5y', '97fhadxxZIL9YGQCkm2JH38qPIzoKK7XzIKiCmqmMGSn86oOX5fOg4nuxJQu', '2020-07-12 13:48:36', '2020-07-13 17:44:02', '08039230044'),
+(9, 'Best Amiolemen', 'bestolumese@gmail.com', NULL, '1Tr6gR4Z9l1s6T1OsRyH9JTlDuXaQQmqFEjd7hDeucqK0KdmOwlJrmsaGpDH', '2020-07-13 02:46:03', '2020-07-13 02:46:03', '08012345678'),
+(13, 'John Doe', 'john@doe.com', '$2y$10$3Vjl8ke9U2noYaAdcDrLyOb.6.TWb/HIFonJs9CJjQnsxdvWNdkPy', 'dfc1yv3Cy3YjeaZjZbFN5BB1HhSg6tvz7jqxirgeTq2CdK7nxuw4AhwbM08S', '2020-07-14 13:20:04', '2020-07-14 13:20:04', '08024783340');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_addresses`
+--
+
+CREATE TABLE `customer_addresses` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `billing_first_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_last_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_country` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_address_1` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_address_2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_state` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_city` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_postcode` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_first_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_last_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_country` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_address_1` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_address_2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_state` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_city` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_postcode` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customer_addresses`
+--
+
+INSERT INTO `customer_addresses` (`id`, `customer_id`, `billing_first_name`, `billing_last_name`, `billing_country`, `billing_address_1`, `billing_address_2`, `billing_state`, `billing_city`, `billing_postcode`, `shipping_first_name`, `shipping_last_name`, `shipping_country`, `shipping_address_1`, `shipping_address_2`, `shipping_state`, `shipping_city`, `shipping_postcode`, `created_at`, `updated_at`) VALUES
+(1, 13, 'John', 'Doe', 'Nigeria', '187 Woodrow Street', '121 Banana Street', 'MA', 'Salem', '01915', 'John', 'Doe', 'Nigeria', '187 Woodrow Street', '121 Banana Street', 'MA', 'Salem', '01915', '2020-07-14 13:20:05', '2020-07-14 14:36:46');
 
 -- --------------------------------------------------------
 
@@ -105,7 +141,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (66, '2020_07_11_124920_create_customers_table', 3),
 (67, '2017_12_11_061154_create_wishlists_table', 4),
 (68, '2020_07_12_064404_add_phone_number_to_customers', 5),
-(73, '2020_07_12_185427_create_social_accounts_table', 6);
+(73, '2020_07_12_185427_create_social_accounts_table', 6),
+(75, '2020_07_14_060249_create_customer_addresses_table', 7);
 
 -- --------------------------------------------------------
 
@@ -453,6 +490,12 @@ ALTER TABLE `customers`
   ADD UNIQUE KEY `customers_email_unique` (`email`);
 
 --
+-- Indexes for table `customer_addresses`
+--
+ALTER TABLE `customer_addresses`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -511,13 +554,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `customer_addresses`
+--
+ALTER TABLE `customer_addresses`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `products`

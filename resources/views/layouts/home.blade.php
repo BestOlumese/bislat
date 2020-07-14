@@ -84,5 +84,27 @@
       toastr.info("{{ Session::get('info') }}")
   @endif
 </script>
+<script>
+  $(document).ready(function(){
+    @php
+      if (@$_SESSION["is_shipping_address_same"] == "yes") {
+    @endphp
+    $("#shipping :input").prop("disabled", true);
+    $("#shipping").hide();
+    @php
+      }
+    @endphp
+    $("input[name='is_shipping_address_same']").click(function() {
+      var radio_value = $(this).val();
+      if(radio_value == "yes"){
+        $("#shipping :input").prop("disabled", true);
+        $("#shipping").hide();
+      }else if(radio_value == "no"){
+        $("#shipping :input").prop("disabled", false);
+        $("#shipping").show();
+      }
+    });
+  })
+</script>
 </body>
 </html>

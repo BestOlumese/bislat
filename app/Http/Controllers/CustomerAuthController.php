@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Customer;
+use App\CustomerAddresses;
 use Session;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,9 @@ class CustomerAuthController extends Controller
         $request['password'] = bcrypt($request->password);
         $customer = Customer::create($request->all());
         Auth::guard('customer')->login($customer);
+        CustomerAddresses::create([
+            'customer_id' => Auth::guard('customer')->user()->id
+        ]);
 
         Session::flash('success', 'You have been sucessfully registered');
         return redirect()->route('customer.dashboard');
