@@ -106,5 +106,19 @@
     });
   })
 </script>
+<script>
+  $(document).ready(function(){
+    $("#payment-btn2").hide();
+    $("#payment-btn3").hide();
+    $("#payment-2").click(function(){
+      $("#payment-btn2").show();
+      $("#payment-btn3").hide();
+    });
+    $("#payment-3").click(function(){
+      $("#payment-btn3").show();
+      $("#payment-btn2").hide();
+    });
+  })
+</script>
 </body>
 </html>

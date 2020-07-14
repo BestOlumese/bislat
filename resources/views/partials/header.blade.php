@@ -96,7 +96,7 @@
                 </form>
               </div>
             </div>
-            <div class="cart-block cart-hover-div ">
+            <div class="cart-block cart-hover-div " onclick="openCart()">
               <div class="cart ">
                 <span class="cart-product">{{ Cart::content()->count() }}</span>
                 <ul>

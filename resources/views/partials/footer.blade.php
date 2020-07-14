@@ -178,6 +178,7 @@
           <li>
             <div class="buttons">
               <a href="{{ route('cart') }}" class="btn btn-normal btn-xs view-cart">view cart</a>
+              <a href="{{ route('checkout') }}" class="btn btn-normal btn-xs view-cart">checkout</a>
             </div>
           </li>
         </ul>

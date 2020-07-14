@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="row cart-buttons">
-            <div class="col-12"><a href="{{ route('index') }}" class="btn btn-normal">continue shopping</a> <a href="#" class="btn btn-normal ml-3">check out</a></div>
+            <div class="col-12"><a href="{{ route('index') }}" class="btn btn-normal">continue shopping</a> @if (Auth::guard('customer')->check() && Cart::content()->count() !== 0) <a href="{{ route('checkout') }}" class="btn btn-normal ml-3">check out</a> @endif</div>
         </div>
     </div>
 </section>

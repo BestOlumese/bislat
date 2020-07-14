@@ -109,6 +109,11 @@ Route::get('cart/decr/{id}/{qty}', [
     'as' => 'cart.decr'
 ]);
 
+Route::get('/checkout', [
+    'uses' => 'CheckoutController@checkout',
+    'as' => 'checkout'
+]);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
