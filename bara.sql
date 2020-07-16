@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 14, 2020 at 10:13 AM
+-- Generation Time: Jul 14, 2020 at 11:09 PM
 -- Server version: 10.3.22-MariaDB
 -- PHP Version: 7.3.0
 
@@ -73,9 +73,10 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `pnumber`) VALUES
-(8, 'Jane Doe', 'jane@doe.com', '$2y$10$hdev.wUCexGJrBXxqPi8MOVZ4BivZNVXfrvHcklnBIN8X.iFE3Q5y', '97fhadxxZIL9YGQCkm2JH38qPIzoKK7XzIKiCmqmMGSn86oOX5fOg4nuxJQu', '2020-07-12 13:48:36', '2020-07-13 17:44:02', '08039230044'),
+(8, 'Jane Doe', 'jane@doe.com', '$2y$10$hdev.wUCexGJrBXxqPi8MOVZ4BivZNVXfrvHcklnBIN8X.iFE3Q5y', 'nnoTQQgdSerkm7A07yADHK9VmxMLeu2ys8HadTNvP0DTpfJqb7M4P2zbQ1PX', '2020-07-12 13:48:36', '2020-07-13 17:44:02', '08039230044'),
 (9, 'Best Amiolemen', 'bestolumese@gmail.com', NULL, '1Tr6gR4Z9l1s6T1OsRyH9JTlDuXaQQmqFEjd7hDeucqK0KdmOwlJrmsaGpDH', '2020-07-13 02:46:03', '2020-07-13 02:46:03', '08012345678'),
-(13, 'John Doe', 'john@doe.com', '$2y$10$3Vjl8ke9U2noYaAdcDrLyOb.6.TWb/HIFonJs9CJjQnsxdvWNdkPy', 'dfc1yv3Cy3YjeaZjZbFN5BB1HhSg6tvz7jqxirgeTq2CdK7nxuw4AhwbM08S', '2020-07-14 13:20:04', '2020-07-14 13:20:04', '08024783340');
+(13, 'John Doe', 'john@doe.com', '$2y$10$3Vjl8ke9U2noYaAdcDrLyOb.6.TWb/HIFonJs9CJjQnsxdvWNdkPy', 'dfc1yv3Cy3YjeaZjZbFN5BB1HhSg6tvz7jqxirgeTq2CdK7nxuw4AhwbM08S', '2020-07-14 13:20:04', '2020-07-14 13:20:04', '08024783340'),
+(14, 'Bola', 'bola@gmail.com', '$2y$10$L7K9vv1xdEgpGyTvc1UwBO7HV9ALW9wZhGYzH0UwgYay6X2ThhGDK', NULL, '2020-07-15 02:32:25', '2020-07-15 02:32:25', '08038382200');
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,8 @@ CREATE TABLE `customer_addresses` (
 --
 
 INSERT INTO `customer_addresses` (`id`, `customer_id`, `billing_first_name`, `billing_last_name`, `billing_country`, `billing_address_1`, `billing_address_2`, `billing_state`, `billing_city`, `billing_postcode`, `shipping_first_name`, `shipping_last_name`, `shipping_country`, `shipping_address_1`, `shipping_address_2`, `shipping_state`, `shipping_city`, `shipping_postcode`, `created_at`, `updated_at`) VALUES
-(1, 13, 'John', 'Doe', 'Nigeria', '187 Woodrow Street', '121 Banana Street', 'MA', 'Salem', '01915', 'John', 'Doe', 'Nigeria', '187 Woodrow Street', '121 Banana Street', 'MA', 'Salem', '01915', '2020-07-14 13:20:05', '2020-07-14 14:36:46');
+(1, 13, 'John', 'Doe', 'Nigeria', '187 Woodrow Street', '121 Banana Street', 'MA', 'Salem', '01915', 'John', 'Doe', 'Nigeria', '187 Woodrow Street', '121 Banana Street', 'MA', 'Salem', '01915', '2020-07-14 13:20:05', '2020-07-14 14:36:46'),
+(2, 14, 'Bola', 'Bolaji', 'Nigeria', '187 Woodrow Street', '187 islandStreet', 'MA', 'Salem', '01915', 'Bola', 'Bolaji', 'Nigeria', '187 Woodrow Street', '187 islandStreet', 'MA', 'Salem', '01915', '2020-07-15 02:32:25', '2020-07-15 02:33:29');
 
 -- --------------------------------------------------------
 
@@ -142,7 +144,36 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (67, '2017_12_11_061154_create_wishlists_table', 4),
 (68, '2020_07_12_064404_add_phone_number_to_customers', 5),
 (73, '2020_07_12_185427_create_social_accounts_table', 6),
-(75, '2020_07_14_060249_create_customer_addresses_table', 7);
+(75, '2020_07_14_060249_create_customer_addresses_table', 7),
+(80, '2020_07_14_104043_create_orders_table', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `due_amount` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `invoice_no` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `customer_address_id` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `payment_method` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `due_amount`, `customer_id`, `invoice_no`, `product_id`, `customer_address_id`, `qty`, `payment_method`, `created_at`, `updated_at`) VALUES
+(8, '1,550.00', 13, 389281693, 70, 1, 1, 'Cash on Delivery', NULL, NULL),
+(9, '4,200.00', 13, 1520073165, 58, 1, 1, 'Cash on Delivery', '2020-07-15 02:28:50', '2020-07-15 02:28:50'),
+(10, '9,100.00', 14, 2071957092, 79, 2, 1, 'Cash on Delivery', '2020-07-15 02:33:29', '2020-07-15 02:33:29');
 
 -- --------------------------------------------------------
 
@@ -187,7 +218,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `title`, `slug`, `price`, `price_discount`, `image1`, `image2`, `image3`, `details`, `subcategory_id`, `total_products`, `products_limit`, `label`, `keyword`, `is_published`, `created_at`, `updated_at`) VALUES
-(1, 'Oral B Pro-Health Herbal Mint 90 g', 'oral-b-pro-health-herbal-mint-90-g', '285', NULL, 'uploads/product/1594301633spx02333.jpg', NULL, NULL, '<ol>\r\n	<li><a href=\"https://www.supermart.ng/\">Home</a></li>\r\n	<li><a href=\"https://www.supermart.ng/category/toiletries\" title=\"toiletries\">Toiletries</a></li>\r\n	<li><a href=\"https://www.supermart.ng/sub-category/toiletries/oral-care\" title=\"oral care\">Oral Care</a></li>\r\n</ol>\r\n\r\n<h1>Oral B Pro-Health Herbal Mint 90 g</h1>\r\n\r\n<p>Price:₦285</p>\r\n\r\n<p>Add to Cart</p>\r\n\r\n<p><img alt=\"favourite\" src=\"https://static-s3.supermart.ng/app/images/svgs/outline_favourite.svg\" /></p>\r\n\r\n<h2>Product Description</h2>\r\n\r\n<p>Buy Oral B Pro-Health Herbal Mint 90 g on Supermart.ng. Good dental and oral care is essential. If you want healthy teeth and gums, you should brush your teeth twice a day with a good toothbrush and toothpaste. You can also rinse afterwards with a mouthwash of your choice. Oral hygiene, if practiced properly, will protect your mouth, tongue, teeth and gums from diseases and infections. You can also avoid bad breath, tooth decay and other oral hygiene problems by cleaning your teeth regularly. It is also advisable to change your toothbrush regularly especially after an illness. When selecting toothpaste, go for one that contain fluoride which helps fight caivities. Rather than poke your teeth and gums with foreign objects, use a good floss to clean inbetween your teeth. A good tongue cleaner and interdental brush will come in handy for your oral care.</p>', 2, 3, NULL, NULL, 'egg', 1, '2020-07-09 20:33:53', '2020-07-11 14:56:31'),
+(1, 'Oral B Pro-Health Herbal Mint 90 g', 'oral-b-pro-health-herbal-mint-90-g', '285', NULL, 'uploads/product/1594301633spx02333.jpg', NULL, NULL, '<p>Buy Oral B Pro-Health Herbal Mint 90 g on Supermart.ng. Good dental and oral care is essential. If you want healthy teeth and gums, you should brush your teeth twice a day with a good toothbrush and toothpaste. You can also rinse afterwards with a mouthwash of your choice. Oral hygiene, if practiced properly, will protect your mouth, tongue, teeth and gums from diseases and infections. You can also avoid bad breath, tooth decay and other oral hygiene problems by cleaning your teeth regularly. It is also advisable to change your toothbrush regularly especially after an illness. When selecting toothpaste, go for one that contain fluoride which helps fight caivities. Rather than poke your teeth and gums with foreign objects, use a good floss to clean inbetween your teeth. A good tongue cleaner and interdental brush will come in handy for your oral care.</p>', 2, 3, NULL, NULL, 'egg', 1, '2020-07-09 20:33:53', '2020-07-14 21:11:09'),
 (2, 'Vaseline Lotion Intensive Care Aloe Soothe 400 ml', 'vaseline-lotion-intensive-care-aloe-soothe-400-ml', '1069', NULL, 'uploads/product/15943038491476285508380_spxspy700_vaseline_lotion_intensive_care_aloe_soothe_400_ml.jpg', NULL, NULL, '<p>Buy Vaseline Lotion Intensive Care Aloe Soothe 400 ml on Supermart.ng. Your skin needs regular hydration. And because our skin can get dry and damaged as we go about our daily activities, it is important to use a good moisturiser to restore vitality to your skin. We also need protection from the sun and a good moisturiser will help to do this. Moisturisers restore as well as trap water in your skin which helps keep the skin healthy. When applying body lotion, it should be applied all over the body - from our face right down to our toes. After a shower, dry yourself and then apply your body cream of choice generously all over your body. While some may opt for body cream or body lotion, some prefer to use body oil which will give the skin an extra shimmer and shine.</p>', 1, 5, NULL, NULL, 'Vaseline Lotion Intensive Care Aloe Soothe', 1, '2020-07-09 21:10:49', '2020-07-09 21:23:22'),
 (3, 'Fressia Perfumed Petroleum Jelly 275 ml', 'fressia-perfumed-petroleum-jelly-275-ml', '330', NULL, 'uploads/product/15943041441497016599213_spar7858_fressia_perfumed_petroleum_jelly_275_ml.jpg', NULL, NULL, '<p>Buy Fressia Perfumed Petroleum Jelly 275 ml on Supermart.ng. All the toiletries you need to keep your children clean and well-groomed are right here. Bath time should be a fun time for the kids; they should look forward to getting clean and smelling fresh when they shower in the morning and in the evening. There are toiletries for children of all ages from newborns all the way to teenagers.</p>', 1, 5, NULL, NULL, 'Fressia Perfumed Petroleum Jelly', 1, '2020-07-09 21:15:44', '2020-07-10 22:46:44'),
 (4, 'Pears Baby Lotion 200 ml (NG)', 'pears-baby-lotion-200-ml-ng', '390', NULL, 'uploads/product/15943042331502725475338_citd2049_pears_baby_lotion_225_ml_(nigeria).jpg', NULL, NULL, '<p>Buy Pears Baby Lotion 200 ml (NG) on Supermart.ng. All the toiletries you need to keep your children clean and well-groomed are right here. Bath time should be a fun time for the kids; they should look forward to getting clean and smelling fresh when they shower in the morning and in the evening. There are toiletries for children of all ages from newborns all the way to teenagers.</p>', 1, 4, NULL, NULL, 'Pears Baby Lotion', 1, '2020-07-09 21:17:13', '2020-07-09 21:23:35'),
@@ -446,7 +477,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `admin`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Best', 'bestolumese@gmail.com', '$2y$10$giY8ekFfxCSnAkL2aPnac.Y/QhISYKsUdklbyNjK635MNm46oPT3.', 1, 'Bo03qAjYHVh6QHEGocYwIlwJisdIn1G9oxjv9o5BfRAwu3NLYoliO6aA61KB', '2020-07-09 19:46:20', '2020-07-09 19:46:20');
+(1, 'Best', 'bestolumese@gmail.com', '$2y$10$giY8ekFfxCSnAkL2aPnac.Y/QhISYKsUdklbyNjK635MNm46oPT3.', 1, 'TcDs34fAc7WaA5UpTjuk1oSrImV7dsEc4WCyquz3cMPHIGpCwo4YAepjbCaK', '2020-07-09 19:46:20', '2020-07-09 19:46:20');
 
 -- --------------------------------------------------------
 
@@ -502,6 +533,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -554,19 +591,25 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `customer_addresses`
 --
 ALTER TABLE `customer_addresses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `products`
