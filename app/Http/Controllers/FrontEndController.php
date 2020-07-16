@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\ContactFormMail;
 use Cart;
 use App\Product;
 use App\Subcategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FrontEndController extends Controller
 {
@@ -25,6 +28,19 @@ class FrontEndController extends Controller
     public function contact()
     {
         return view('contact');
+    }
+
+    public function contact_store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|string|email',
+            'message' => 'required|max:255',
+        ]);
+
+        Mail::to($request['email'])->send(new ContactFormMail($request->all()));
+
+        return redirect()->back();
     }
 
     public function subcategory($slug)

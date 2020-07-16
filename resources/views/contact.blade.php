@@ -28,36 +28,43 @@
         <div class="row section-big-pb-space">
             <div class="col-xl-6 offset-xl-3">
                 <h3 class="text-center mb-3">Get in touch</h3>
-                <form class="theme-form">
+                <form class="theme-form" action="{{ route('contact.store') }}" method="POST">
+                    {{ csrf_field() }}
                     <div class="form-row">
-                        <div class="col-md-6">
-                           <div class="form-group">
-                               <label for="name">First Name</label>
-                               <input type="text" class="form-control" id="name" placeholder="Enter Your name" required="">
-                           </div>
+                        <div class="col-md-12">
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your name" value="{{ old('name') }}" required="">
+
+                            @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                         </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                              <label for="email">Last Name</label>
-                              <input type="text" class="form-control" id="last-name" placeholder="Last Name" required="">
-                          </div>
                         </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                               <label for="review">Phone number</label>
-                               <input type="text" class="form-control" id="review" placeholder="Enter your number" required="">
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                                <input type="text" class="form-control" id="email" placeholder="Email" name="email" value="{{ old('email') }}" required="">
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div>
+                            <div class="{{ $errors->has('message') ? ' has-error' : '' }}">
                                 <label for="review">Write Your Message</label>
-                                <textarea class="form-control" placeholder="Write Your Message" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                <textarea name="message" class="form-control" placeholder="Write Your Message" id="exampleFormControlTextarea1" rows="2">{{ old('message') }}</textarea>
+
+                                @if ($errors->has('message'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('message') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-12">

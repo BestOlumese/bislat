@@ -26,6 +26,11 @@ Route::get('/contact', [
     'as' => 'contact'
 ]);
 
+Route::post('/contact/store', [
+    'uses' => 'FrontEndController@contact_store',
+    'as' => 'contact.store'
+]);
+
 Route::get('redirect', 'SocialAuthController@redirect');
 Route::get('callback', 'SocialAuthController@callback');
 
